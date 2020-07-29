@@ -95,6 +95,13 @@ body {
 	text-transform: capitalize;
 }
 
+.parent {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: start;
+}
+
 @media only screen and (max-width: 600px) {
   body {
     flex-flow: column;

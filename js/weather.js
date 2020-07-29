@@ -2,6 +2,13 @@
 
 (function(){
 
+    var app = new Vue({
+    		  el: '#app',
+    		  data: {
+    			  weather: false,
+              }
+    });
+
     var temp = document.getElementById('temp').textContent;
     // var condition document.getElementById('condition');
     // var city document.getElementById('city');
