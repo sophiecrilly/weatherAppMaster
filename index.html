@@ -24,13 +24,14 @@
 	  <h5 id="condition" class="condition row capitalise">Sunny</h5>
 	  <h3 id="city" class="location-name row">Wellington</h3>
 	  <h5 id="country" class="location-country row">New Zealand</h5>
+	  <h5 style="text-align: center;">{{getDayOfTheWeek(1)}}</h5>
 	</div>
 	<div class="weather-forecast">
 
 	  <div class="forecast-item">
 	    <div class="day">
-	      <h4 id="dayOneDay">Tomorrow</h4>
-	      <h6 id="dayOneDate">Aug 6</h6>
+	      <h4>{{getDayOfTheWeek(2)}}</h4>
+	      <h6>{{dates[1]}}</h6>
 	    </div>
 	    <div class="forecast">
 	      <i class="icon1"></i><p id="dayOneTemp">28C</p>
@@ -40,8 +41,8 @@
 
 	  <div class="forecast-item">
 	    <div class="day">
-	      <h4 id="dayTwoDay">Monday</h4>
-	      <h6 id="dayTwoDate">Aug 7</h6>
+	      <h4>{{getDayOfTheWeek(3)}}</h4>
+	      <h6>{{dates[2]}}</h6>
 	    </div>
 	    <div class="forecast">
 	      <i class="icon2"></i><p id="dayTwoTemp">28C</p>
@@ -51,8 +52,8 @@
 
 	  <div class="forecast-item">
 	    <div class="day">
-	      <h4 id="dayThreeDay">Tuesday</h4>
-	      <h6 id="dayThreeDate">Aug 8</h6>
+	      <h4>{{getDayOfTheWeek(4)}}</h4>
+	      <h6>{{dates[3]}}</h6>
 	    </div>
 	    <div class="forecast">
 	      <i class="icon3"></i></i><p id="dayThreeTemp">28C</p>
@@ -62,8 +63,8 @@
 
 	  <div class="forecast-item">
 	    <div class="day">
-	      <h4 id="dayFourDay">Wednesday</h4>
-	      <h6 id="dayFourDate">Aug 9</h6>
+	      <h4>{{getDayOfTheWeek(5)}}</h4>
+	      <h6>{{dates[4]}}</h6>
 	    </div>
 	    <div class="forecast">
 	      <i class="icon4"></i><p id="dayFourTemp">28C</p>
@@ -73,8 +74,8 @@
 
 	  <div class="forecast-item">
 	    <div class="day">
-	      <h4 id="dayFiveDay">Thursday</h4>
-	      <h6 id="dayFiveDate">Aug 10</h6>
+	      <h4>{{getDayOfTheWeek(6)}}</h4>
+	      <h6>{{dates[5]}}</h6>
 	    </div>
 	    <div class="forecast">
 	      <i class="icon5"></i><p id="dayFiveTemp">28C</p>
@@ -84,8 +85,8 @@
 
 	  <div class="forecast-item">
 	    <div class="day">
-	      <h4 id="daySixDay">Friday</h4>
-	      <h6 id="daySixDate">Aug 11</h6>
+	      <h4>{{getDayOfTheWeek(7)}}</h4>
+	      <h6>{{dates[6]}}</h6>
 	    </div>
 	    <div class="forecast">
 	      <i class="icon6"></i><p id="daySixTemp">28C</p>
@@ -95,8 +96,8 @@
 
 	  <div class="forecast-item">
 	    <div class="day">
-	      <h4 id="daySevenDay">Saturday</h4>
-	      <h6 id="daySevenDate">Aug 12</h6>
+	      <h4>{{getDayOfTheWeek(8)}}</h4>
+	      <h6>{{dates[7]}}</h6>
 	    </div>
 	    <div class="forecast">
 	      <i class="icon7"></i><p id="daySevenTemp">28C</p>
@@ -110,6 +111,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script src="js/weather.js"></script>
 </body>
 </html>
