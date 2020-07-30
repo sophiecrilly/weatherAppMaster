@@ -1,12 +1,53 @@
 // custom js file
 
 (function(){
-
+    console.log('working')
     var app = new Vue({
-    		  el: '#app',
-    		  data: {
-    			  weather: false,
-              }
+      el: '#app',
+      data: {
+
+        weather: false,
+
+        dates: '*** here!',
+        daysOf: ['Monday', 'Tuesday'],
+        newTitle: 'This is a sunny icon/day',
+
+        isActive: true
+      },
+      created: function () {
+        this.createDates();
+      },
+      methods: {
+        doAnAlert: function () {
+          console.log(this)
+        },
+        getDayOfTheWeek: function (indexAddition) {
+          var date = new Date();
+          var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+          var currentDay = date.getDay();
+
+          function loop(n) {
+            var foundDay;
+            for (var i=0; i<n; i++) {
+              var pointer = (i + currentDay) % days.length;
+              foundDay = days[pointer]
+            }
+            return foundDay
+          }
+          return loop(indexAddition)
+        }, // Function ENDS
+
+        createDates: function () {
+          var datesCreated = [];
+          var daysRequired = 7
+          for (var i = 0; i <= daysRequired; i++) {
+            datesCreated.push( moment().add(i, 'days').format('Do MMMM') )
+          }
+          this.dates = datesCreated;
+        }// createDates ENDS
+
+      }, // methods END
+
     });
 
     var temp = document.getElementById('temp').textContent;
@@ -15,7 +56,7 @@
     // var country document.getElementById('country');
 
     var today = new Date();
-    var date = document.getElementById('dayOneDate').textContent;
+    // var date = document.getElementById('dayOneDate').textContent;
 
 
 	function makeApiCallWeatherData () {
@@ -47,6 +88,7 @@
         }
 
         function getCondition(response) {
+            console.log('working')
             document.getElementById('condition').innerHTML = response.data.daily[0].weather[0].description;
             console.log(response.data.daily[0].weather[0].description);
 
@@ -72,85 +114,85 @@
             console.log(response.data.daily[7].weather[0].description);
         }
 
-        function getDate(response){
-            var tomorrow = new Date(today)
-            var nextDate = new Date(today)
-            var nextDate2 = new Date(today)
-            var nextDate3 = new Date(today)
-            var nextDate4 = new Date(today)
-            var nextDate5 = new Date(today)
-            var nextDate6 = new Date(today)
+        // function getDate(response){
+        //     var tomorrow = new Date(today)
+        //     var nextDate = new Date(today)
+        //     var nextDate2 = new Date(today)
+        //     var nextDate3 = new Date(today)
+        //     var nextDate4 = new Date(today)
+        //     var nextDate5 = new Date(today)
+        //     var nextDate6 = new Date(today)
+        //
+        //     var options = { month: 'long', day: 'numeric' };
+        //     tomorrow.setDate(tomorrow.getDate() + 1);
+        //     nextDate.setDate(nextDate.getDate() + 2);
+        //     nextDate2.setDate(nextDate2.getDate() + 3);
+        //     nextDate3.setDate(nextDate3.getDate() + 4);
+        //     nextDate4.setDate(nextDate4.getDate() + 5);
+        //     nextDate5.setDate(nextDate5.getDate() + 6);
+        //     nextDate6.setDate(nextDate6.getDate() + 7);
+        //
+        //     document.getElementById('dayOneDate').innerHTML = tomorrow.toLocaleDateString('en-US', options);
+        //     console.log(tomorrow);
+        //
+        //     document.getElementById('dayTwoDate').innerHTML = nextDate.toLocaleDateString('en-US', options);
+        //     console.log(nextDate);
+        //
+        //     document.getElementById('dayThreeDate').innerHTML = nextDate2.toLocaleDateString('en-US', options);
+        //     console.log(nextDate2);
+        //
+        //     document.getElementById('dayFourDate').innerHTML = nextDate3.toLocaleDateString('en-US', options);
+        //     console.log(nextDate3);
+        //
+        //     document.getElementById('dayFiveDate').innerHTML = nextDate4.toLocaleDateString('en-US', options);
+        //     console.log(nextDate4);
+        //
+        //     document.getElementById('daySixDate').innerHTML = nextDate5.toLocaleDateString('en-US', options);
+        //     console.log(nextDate5);
+        //
+        //     document.getElementById('daySevenDate').innerHTML = nextDate6.toLocaleDateString('en-US', options);
+        //     console.log(nextDate6);
+        // }
 
-            var options = { month: 'long', day: 'numeric' };
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            nextDate.setDate(nextDate.getDate() + 2);
-            nextDate2.setDate(nextDate2.getDate() + 3);
-            nextDate3.setDate(nextDate3.getDate() + 4);
-            nextDate4.setDate(nextDate4.getDate() + 5);
-            nextDate5.setDate(nextDate5.getDate() + 6);
-            nextDate6.setDate(nextDate6.getDate() + 7);
-
-            document.getElementById('dayOneDate').innerHTML = tomorrow.toLocaleDateString('en-US', options);
-            console.log(tomorrow);
-
-            document.getElementById('dayTwoDate').innerHTML = nextDate.toLocaleDateString('en-US', options);
-            console.log(nextDate);
-
-            document.getElementById('dayThreeDate').innerHTML = nextDate2.toLocaleDateString('en-US', options);
-            console.log(nextDate2);
-
-            document.getElementById('dayFourDate').innerHTML = nextDate3.toLocaleDateString('en-US', options);
-            console.log(nextDate3);
-
-            document.getElementById('dayFiveDate').innerHTML = nextDate4.toLocaleDateString('en-US', options);
-            console.log(nextDate4);
-
-            document.getElementById('daySixDate').innerHTML = nextDate5.toLocaleDateString('en-US', options);
-            console.log(nextDate5);
-
-            document.getElementById('daySevenDate').innerHTML = nextDate6.toLocaleDateString('en-US', options);
-            console.log(nextDate6);
-        }
-
-        function getDay(response){
-            var tomorrow = new Date(today)
-            var nextDay = new Date(today)
-            var nextDay2 = new Date(today)
-            var nextDay3 = new Date(today)
-            var nextDay4 = new Date(today)
-            var nextDay5 = new Date(today)
-            var nextDay6 = new Date(today)
-
-            var options = { weekday: 'long' };
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            nextDay.setDate(nextDay.getDate() + 2);
-            nextDay2.setDate(nextDay2.getDate() + 3);
-            nextDay3.setDate(nextDay3.getDate() + 4);
-            nextDay4.setDate(nextDay4.getDate() + 5);
-            nextDay5.setDate(nextDay5.getDate() + 6);
-            nextDay6.setDate(nextDay6.getDate() + 7);
-
-            document.getElementById('dayOneDay').innerHTML = tomorrow.toLocaleDateString('en-US', options);
-            console.log(tomorrow);
-
-            document.getElementById('dayTwoDay').innerHTML = nextDay.toLocaleDateString('en-US', options);
-            console.log(nextDay);
-
-            document.getElementById('dayThreeDay').innerHTML = nextDay2.toLocaleDateString('en-US', options);
-            console.log(nextDay2);
-
-            document.getElementById('dayFourDay').innerHTML = nextDay3.toLocaleDateString('en-US', options);
-            console.log(nextDay3);
-
-            document.getElementById('dayFiveDay').innerHTML = nextDay4.toLocaleDateString('en-US', options);
-            console.log(nextDay4);
-
-            document.getElementById('daySixDay').innerHTML = nextDay5.toLocaleDateString('en-US', options);
-            console.log(nextDay5);
-
-            document.getElementById('daySevenDay').innerHTML = nextDay6.toLocaleDateString('en-US', options);
-            console.log(nextDay6);
-        }
+        // function getDay(response){
+        //     var tomorrow = new Date(today)
+        //     var nextDay = new Date(today)
+        //     var nextDay2 = new Date(today)
+        //     var nextDay3 = new Date(today)
+        //     var nextDay4 = new Date(today)
+        //     var nextDay5 = new Date(today)
+        //     var nextDay6 = new Date(today)
+        //
+        //     var options = { weekday: 'long' };
+        //     tomorrow.setDate(tomorrow.getDate() + 1);
+        //     nextDay.setDate(nextDay.getDate() + 2);
+        //     nextDay2.setDate(nextDay2.getDate() + 3);
+        //     nextDay3.setDate(nextDay3.getDate() + 4);
+        //     nextDay4.setDate(nextDay4.getDate() + 5);
+        //     nextDay5.setDate(nextDay5.getDate() + 6);
+        //     nextDay6.setDate(nextDay6.getDate() + 7);
+        //
+        //     document.getElementById('dayOneDay').innerHTML = tomorrow.toLocaleDateString('en-US', options);
+        //     console.log(tomorrow);
+        //
+        //     document.getElementById('dayTwoDay').innerHTML = nextDay.toLocaleDateString('en-US', options);
+        //     console.log(nextDay);
+        //
+        //     document.getElementById('dayThreeDay').innerHTML = nextDay2.toLocaleDateString('en-US', options);
+        //     console.log(nextDay2);
+        //
+        //     document.getElementById('dayFourDay').innerHTML = nextDay3.toLocaleDateString('en-US', options);
+        //     console.log(nextDay3);
+        //
+        //     document.getElementById('dayFiveDay').innerHTML = nextDay4.toLocaleDateString('en-US', options);
+        //     console.log(nextDay4);
+        //
+        //     document.getElementById('daySixDay').innerHTML = nextDay5.toLocaleDateString('en-US', options);
+        //     console.log(nextDay5);
+        //
+        //     document.getElementById('daySevenDay').innerHTML = nextDay6.toLocaleDateString('en-US', options);
+        //     console.log(nextDay6);
+        // }
 
         function getIcons(response) {
           for (var i = 0; i < 8; i++) {
@@ -162,18 +204,20 @@
           }
         }
 
-		// GET request for remote image in node.js
+
+        // GET request for remote image in node.js
 		axios({
 		  method: 'get',
 			url: 'https://api.openweathermap.org/data/2.5/onecall?lat=-41.28666552&lon=174.772996908&exclude=hourly,minutely&appid=2d432bf9c5408e886ec81de39c82e329&units=metric'
 		})
 		.then(function (response) {
-		  console.log(response);
+		  app.weather = response;
 
           getTemp(response);
+          console.log('is this working')
           getCondition(response);
-          getDate(response);
-          getDay(response);
+          // getDate(response);
+          // getDay(response);
           getIcons(response);
 		});
 	} // function ENDS

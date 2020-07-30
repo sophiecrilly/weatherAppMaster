@@ -92,6 +92,12 @@ body {
 	text-transform: capitalize;
 }
 
+#app {
+	height: 100vh;
+	display: flex;
+	justify-content: start;
+}
+
 .parent {
 	width: 100%;
 	height: 100vh;
