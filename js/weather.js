@@ -162,7 +162,6 @@
           }
         }
 
-
 		// GET request for remote image in node.js
 		axios({
 		  method: 'get',
