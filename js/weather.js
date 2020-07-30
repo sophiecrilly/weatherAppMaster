@@ -1,54 +1,67 @@
 // custom js file
 
 (function(){
-    console.log('working')
+
     var app = new Vue({
-      el: '#app',
-      data: {
-
-        weather: false,
-
-        dates: '*** here!',
-        daysOf: ['Monday', 'Tuesday'],
-        newTitle: 'This is a sunny icon/day',
-
-        isActive: true
-      },
-      created: function () {
-        this.createDates();
-      },
-      methods: {
-        doAnAlert: function () {
-          console.log(this)
+        el: '#app',
+        data: {
+            // start the app with weather defined as false
+            weather: false,
+            // eventually has the date creation result
+            dates: '*** here!',
+            daysOf: ['Monday', 'Tuesday'],
+            newTitle: 'This is a sunny icon/day',
+            isActive: true
         },
+        // Special function that vue.js provides, allows users to make a function call when vue instance created
+        created: function () {
+            this.createDates();
+        },
+        methods: {
+            doAnAlert: function () {
+                // refers to vue instance
+            console.log(this)
+        },
+        // function returns each days of the week.
+        // References number 1 as today, and 7 for the final day of the week
         getDayOfTheWeek: function (indexAddition) {
-          var date = new Date();
-          var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-          var currentDay = date.getDay();
+            // refers to the date object
+            var date = new Date();
+            // array of dayys
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            // current day reference
+            var currentDay = date.getDay();
 
-          function loop(n) {
-            var foundDay;
-            for (var i=0; i<n; i++) {
-              var pointer = (i + currentDay) % days.length;
-              foundDay = days[pointer]
+            // algorithm for infinite loop through the seven days in array
+            function loop(n) {
+                var foundDay;
+                for (var i=0; i<n; i++) {
+                    var pointer = (i + currentDay) % days.length;
+                    foundDay = days[pointer]
+                }
+                // returns last day found result
+                return foundDay
             }
-            return foundDay
-          }
-          return loop(indexAddition)
+            // returns the day result
+            return loop(indexAddition)
         }, // Function ENDS
 
+        // a vue method that uses the moment.js library to create dates
         createDates: function () {
-          var datesCreated = [];
-          var daysRequired = 7
-          for (var i = 0; i <= daysRequired; i++) {
-            datesCreated.push( moment().add(i, 'days').format('Do MMMM') )
-          }
-          this.dates = datesCreated;
+            // datesCreated 'catch' array
+            var datesCreated = [];
+            var daysRequired = 7
+            // loop to seven and push all days to the array in a string format
+            for (var i = 0; i <= daysRequired; i++) {
+                datesCreated.push( moment().add(i, 'days').format('Do MMMM') )
+            }
+            // assigning array data to the vue data object
+            this.dates = datesCreated;
         }// createDates ENDS
 
-      }, // methods END
+    }, // methods END
 
-    });
+});
 
     var temp = document.getElementById('temp').textContent;
     // var condition document.getElementById('condition');
